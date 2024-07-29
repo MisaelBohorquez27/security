@@ -1,11 +1,5 @@
 var express = require('express');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 /* 1. Importe el módulo crypto */
 let crypto = require('crypto');
 
@@ -14,7 +8,11 @@ const sequelize = require('../models/index.js').sequelize;
 var initModels = require("../models/init-models");
 var models = initModels(sequelize);
 
-module.exports = router;
+/* GET home page. */
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
 
 /* POST user. */
 /* 3. Cree el callback asíncrono que responda al método POST */
@@ -48,6 +46,17 @@ router.post('/login', async function (req, res, next) {
 
         /* 9. Compare passwordHash y userData.password que sean iguales. */
         if (passwordHash === userData.password) {
+
+          /* 1. Configuración de la expiración de la cookie */
+          const options = {
+            expires: new Date(
+              Date.now() + (60 * 1000)
+            )
+          }
+
+          /* 2. Cree la cookie 'username' con la variable user y la configuración de options  */
+          res.cookie("username", username, options)
+
           /* 10. En caso de éxito, redirija a '/users' */
           res.redirect('/users');
         } else {
@@ -67,3 +76,5 @@ router.post('/login', async function (req, res, next) {
   }
 
 });
+
+module.exports = router;
