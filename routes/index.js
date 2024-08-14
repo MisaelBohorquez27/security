@@ -59,7 +59,7 @@ router.post("/login", async function (req, res, next) {
           req.session.loggedin = true;
           req.session.username = username;
           /* 2. Agregue el rol del usuario en la sesión */
-          req.session.role = userData.users_roles.roles_idrole_role.name;
+          req.session.role = userData.users_roles.roles_idrole_role.name; 
           if (req.session.role === 'user') {
             // Redirigir a una vista específica para usuarios con el rol 'user'
             res.redirect("/token");
