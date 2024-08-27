@@ -15,10 +15,10 @@
   },
   "production": {
     "username": "root",
-    "password": "JyeqOMipEaUMynUKzdjfZXCScAzBymWa",
+    "password": "urwRchEDWWvrCTbZrbSikEzTBZAOgrpx",
     "database": "railway",
-    "host": "viaduct.proxy.rlwy.net",
-    "port":"50327",
+    "host": "junction.proxy.rlwy.net",
+    "port":"45367",
     "dialect": "mysql"
   }
 }
